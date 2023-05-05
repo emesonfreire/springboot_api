@@ -1,9 +1,39 @@
-name: CI
+name: CI-WINDOWS
 
 on: [push]
 
 jobs:
-  build:
+
+  build-LINUX:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - uses: actions/checkout@v3
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Setup Maven
+      run: sudo apt-get install maven
+
+    - name: Setup MySQL
+      run: |
+        sudo apt-get update
+        sudo apt-get install mysql-server
+        sudo mysql -e "CREATE DATABASE voolmed_api;"
+
+    - name: Build and Run the Project
+      run: |
+        cd $GITHUB_WORKSPACE
+        mvn clean install
+        java -jar target/mvnw
+  build-WINDOWS:
 
     runs-on: windows-latest
 
@@ -31,3 +61,7 @@ jobs:
         cd $env:GITHUB_WORKSPACE
         mvn clean install
         java -jar target/mvnw
+        
+  
+    
+        
