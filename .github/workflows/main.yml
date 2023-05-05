@@ -8,7 +8,11 @@ on:
 
 jobs:
   install-and-create-db:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+     
+       os: [ubuntu-latest, windows-latest, macOS-latest]
     steps:
       - name: Install MySQL
         run: sudo apt-get install mysql-server -y
@@ -53,7 +57,11 @@ jobs:
           # Deprecated. Use node-version instead. Will not be supported after October 1, 2019
          #version: # optional
   build-and-run:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+       
+       os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
     
