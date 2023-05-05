@@ -61,7 +61,7 @@ jobs:
     strategy:
       matrix:
        
-       os: [ubuntu-latest, windows-latest, macOS-latest]
+       os: [ubuntu-latest]
 
     steps:
     
@@ -77,8 +77,11 @@ jobs:
         sudo service mysql start
         mysql -u root -proot -e "CREATE DATABASE IF NOT EXISTS vollmed_api"  
       
-    - name: pacotes
-      run : mvn package
+    - name: maven
+      run : mvn clean install
+      
+   # - name: pacotes
+     # run : mvn package
       
     - name: Build with Maven
       run: mvn -B -X package --file pom.xml
