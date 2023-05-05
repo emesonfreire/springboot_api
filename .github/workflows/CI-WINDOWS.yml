@@ -28,6 +28,6 @@ jobs:
 
         - name: Build and Run the Project
           run: |
-            cd $env:GITHUB_WORKSPACE
+            cd /.github
             mvn clean install
             java -jar target/api-0.0.1-SNAPSHOT.jar.original
