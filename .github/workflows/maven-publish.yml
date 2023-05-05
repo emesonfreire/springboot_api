@@ -70,7 +70,7 @@ jobs:
       run: |
         cd $env:GITHUB_WORKSPACE
         mvn clean install
-        java -jar target/mvnw
+        java -jar target/mvnw.cmd
         
   
     
