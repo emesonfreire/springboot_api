@@ -22,11 +22,10 @@ jobs:
     - name: Setup MySQL
       run: |
         choco install mysql --params="'/QUIET /NORESTART'"
-        mysql -u root -e "CREATE DATABASE vollmed_api;"
+        mysql -u root -e "CREATE DATABASE voolmed_api;"
 
     - name: Build and Run the Project
       run: |
-        ./ .github/
+        cd $env:GITHUB_WORKSPACE
         mvn clean install
-        java -jar target/<nome-do-arquivo-jar>
-
+        java -jar target/mvnw
