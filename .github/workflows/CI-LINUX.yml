@@ -51,7 +51,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mvn clean install
-        java -jar target/api-0.0.1-SNAPSHOT.jar.original
+        java -jar target/api-0.0.1-SNAPSHOT.jar
   
       
     - name: Upload a Build Artifact
