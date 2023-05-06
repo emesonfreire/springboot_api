@@ -40,7 +40,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mvn clean install
-        #java -jar target/api-0.0.1-SNAPSHOT.jar.original
+        java -jar target/springboot_api-0.0.1-SNAPSHOT.jar
   
   build:
     needs: build-LINUX
@@ -51,7 +51,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mvn clean install
-        java -jar target/api-0.0.1-SNAPSHOT.jar
+        java -jar target/springboot_api-0.0.1-SNAPSHOT.jar
   
       
     - name: Upload a Build Artifact
