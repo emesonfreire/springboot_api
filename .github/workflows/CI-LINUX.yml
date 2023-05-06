@@ -40,6 +40,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         mvn clean install
+        cd target/
         java -jar target/springboot_api-0.0.1-SNAPSHOT.jar
   
   build:
@@ -51,6 +52,7 @@ jobs:
       run: |
         cd /home/ubuntu
         mvn clean install
+        cd target/
         java -jar target/springboot_api-0.0.1-SNAPSHOT.jar
   
       
