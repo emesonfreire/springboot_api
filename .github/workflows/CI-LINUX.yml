@@ -42,8 +42,28 @@ jobs:
         mvn clean install
         #java -jar target/api-0.0.1-SNAPSHOT.jar.original
   
-  Deploy_EC2:
+  build:
     needs: build-LINUX
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: |
+        cd $GITHUB_WORKSPACE
+        mvn clean install
+        java -jar target/api-0.0.1-SNAPSHOT.jar.original
+  
+      
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v3.1.0
+      with:
+    # Artifact name
+        name: programa
+    # A file, directory or wildcard pattern that describes what to upload
+        path: main
+  
+  Deploy_EC2:
+    needs: build
     uses: ./.github/workflows/ec2-aws.yml
     secrets: inherit
         
