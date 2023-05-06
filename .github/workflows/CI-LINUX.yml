@@ -41,6 +41,11 @@ jobs:
         cd $GITHUB_WORKSPACE
         mvn clean install
         #java -jar target/api-0.0.1-SNAPSHOT.jar.original
+  
+  Deploy_EC2:
+    needs: build-LINUX
+    uses: ./.github/workflows/ec2-aws.yml
+    secrets: inherit
         
         
   
